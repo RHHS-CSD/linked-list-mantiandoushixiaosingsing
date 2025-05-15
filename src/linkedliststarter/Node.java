@@ -10,4 +10,12 @@ package linkedliststarter;
  */
 public class Node {
     
+    private Patients item = null;
+    private Node next = null;
+    
+    public Node(Patients insert){
+        this.item = insert;
+    }
+    
+    public 
 }
