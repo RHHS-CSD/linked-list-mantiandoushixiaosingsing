@@ -36,7 +36,7 @@ public class SinglyLinkedList implements ILinkedList{
      *         false otherwise
      */
     @Override
-    public boolean remove(Data item) {
+    public boolean remove(Patients item) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -57,17 +57,17 @@ public class SinglyLinkedList implements ILinkedList{
      * @return The index of the found item, or -1
      */
     @Override
-    public int indexOf(Data item) {
+    public int indexOf(Patients item) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     /**
-     * Retrieves the Data at the given index
+     * Retrieves the Patients at the given index
      * @param index The index to be retrieved
      * @return The data item, null if bad index
      */
     @Override
-    public Data get(int index) {
+    public Patients get(int index) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
