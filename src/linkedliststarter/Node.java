@@ -16,6 +16,5 @@ public class Node {
     public Node(Patients insert){
         this.item = insert;
     }
-    
-    public 
+   
 }
