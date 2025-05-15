@@ -12,10 +12,10 @@ public interface ILinkedList {
     public String toString();
 public int size();
 public void clear();
-public boolean remove(Data item);
+public boolean remove(Patients item);
 public boolean remove(int index);
-public int indexOf(Data item);
-public Data get(int index);
+public int indexOf(Patients item);
+public Patients get(int index);
 public boolean add(String item);
 public boolean add(String item, int index);
 }
