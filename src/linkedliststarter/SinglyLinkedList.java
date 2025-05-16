@@ -11,6 +11,7 @@ package linkedliststarter;
 public class SinglyLinkedList implements ILinkedList{
     private Node head;
     private Node tail;
+    private int size;
 
     /**
      * Return the size of the Linked List
@@ -18,7 +19,7 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return this.size;
     }
 
     /**
@@ -26,7 +27,10 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+                
     }
 
     /**
@@ -58,7 +62,17 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public int indexOf(Patients item) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Node current = head; 
+        int i = 0;
+        
+        while(current != null){
+            if(current.getItem().equals(item)){
+                return i;
+            }
+            current = current.getNext();
+            i++;
+        }
+        return -1;
     }
 
     /**
@@ -68,7 +82,16 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public Patients get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Node current = head;
+        
+        if(index<0 || index>=size){
+            return null;
+        }
+        for(int i=0;i<index;i++){
+            current = current.getNext();
+        }
+        
+        return current.getItem();
     }
 
     /**
@@ -77,8 +100,22 @@ public class SinglyLinkedList implements ILinkedList{
      * @return true if successfuuly added, false otherwise
      */
     @Override
-    public boolean add(String item) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public boolean add(int number, String firstName, String lastName, int priority) {
+        Patients newPatient = new Patients(number,firstName,lastName,priority);
+        Node newNode = new Node(newPatient);
+        
+        if(head!=null){
+            tail.setNext(newNode);
+            tail = newNode;
+        }else{
+            head = newNode;
+            tail = newNode;
+        }
+        
+        size++;
+        
+        return true;
+        
     }
 
     /**
@@ -88,8 +125,38 @@ public class SinglyLinkedList implements ILinkedList{
      * @return true if successfuuly added, false otherwise
      */
     @Override
-    public boolean add(String item, int index) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public boolean add(int number, String firstName, String lastName, int priority, int index) {
+        if(index<0 || index>size) {
+            return false;
+        }
+        
+        Patients newPatient = new Patients(number,firstName,lastName,priority);
+        Node newNode = new Node(newPatient);
+        
+        //adding @ beginning
+        if(index==0){
+            newNode.setNext(head);
+            head = newNode;
+            if(tail==null){//empty list
+                tail=newNode;
+            }
+        //adding @ end
+        }else if(index==size){
+            tail.setNext(newNode);
+            tail = newNode;
+        }else{
+            Node current = head;
+            for(int i=0;i<index-1;i++){
+                current = current.getNext();
+            }
+            newNode.setNext(current.getNext());
+            current.setNext(newNode);
+            
+        }
+        
+        size++;
+        
+        return true;
     }
     
     

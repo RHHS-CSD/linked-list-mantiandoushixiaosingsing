@@ -16,5 +16,17 @@ public class Node {
     public Node(Patients insert){
         this.item = insert;
     }
+    
+    public Patients getItem(){
+        return this.item;
+    }
+    
+    public Node getNext(){
+        return this.next;
+    }
+    
+    public void setNext(Node next){
+        this.next = next;
+    }
    
 }
