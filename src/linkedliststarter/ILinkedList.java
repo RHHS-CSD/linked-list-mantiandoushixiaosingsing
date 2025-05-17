@@ -16,6 +16,6 @@ public boolean remove(Patients item);
 public boolean remove(int index);
 public int indexOf(Patients item);
 public Patients get(int index);
-public boolean add(String item);
-public boolean add(String item, int index);
+public boolean add(Patients item);
+public boolean add(Patients item, int index);
 }

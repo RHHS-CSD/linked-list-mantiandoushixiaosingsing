@@ -17,7 +17,15 @@ public class LinkedListStarter {
         // This is a shared space for you to do some testing  It will also likely be the source of lots of conflicts if you're not careful.
         SinglyLinkedList sli1 = new SinglyLinkedList();
         
+        Patients p1 = new Patients(1, "wenxuan", "tan", 1);
+        Patients p2 = new Patients(2, "yang", "wu", 2);
+        Patients p3 = new Patients(3, "chang", "sun", 3);
         
+        sli1.add(p1);
+        sli1.add(p2);
+        sli1.add(p3);
+        
+        System.out.println(sli1);
         
     }
     

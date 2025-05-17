@@ -19,6 +19,12 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public int size() {
+        this.size = 0;
+        Node current = head;
+        while(current != null){
+            this.size++;
+            current = current.getNext();
+        }
         return this.size;
     }
 
@@ -41,8 +47,34 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public boolean remove(Patients item) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (head == null){
+            return false;
+        }
+        
+        if (head.getItem().equals(item)){
+            head = head.getNext();
+            if (head == null){
+                tail = null;
+            }
+            return true;
+        }
+        
+        Node current = head;
+        while(current.getNext() != null){
+            if (current.getNext().getItem().equals(item)){
+                current.setNext(current.getNext().getNext());
+                if (current.getNext() == null){
+                    tail = current;
+                }
+                size--;
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+        
     }
+
 
     /**
      * Remove the item from the particular index
@@ -52,7 +84,37 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public boolean remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        if (index < 0 || index >= size || head == null){
+            return false;
+        }
+        
+        if (index == 0){
+            head = head.getNext();
+            if (head == null){
+                tail = null;
+            }
+            size--;
+            return true;
+        }
+        
+        Node current = head;
+        for (int i = 0; i < index - 1; i++){
+            if (current.getNext() == null){
+                return false;
+            }
+            current = current.getNext();
+        }
+        
+        if (current.getNext() == null){
+            return false;
+        }
+        
+        current.setNext(current.getNext().getNext());
+        if (current.getNext() == null){
+            tail = current;
+        }
+        size--;
+        return true;
     }
 
     /**
@@ -97,23 +159,26 @@ public class SinglyLinkedList implements ILinkedList{
     /**
      * Add the gen item to the end of the linked list
      * @param item Item to add
-     * @return true if successfuuly added, false otherwise
+     * @return true if successfully added, false otherwise
      */
     @Override
-    public boolean add(int number, String firstName, String lastName, int priority) {
-        Patients newPatient = new Patients(number,firstName,lastName,priority);
-        Node newNode = new Node(newPatient);
+    public boolean add(Patients item) {
+        if (item == null){
+            return false;
+        }
         
-        if(head!=null){
-            tail.setNext(newNode);
-            tail = newNode;
-        }else{
+        Node newNode = new Node (item);
+        
+        if (head == null){
             head = newNode;
+            tail = newNode;
+        }
+        else{
+            tail.setNext(newNode);
             tail = newNode;
         }
         
         size++;
-        
         return true;
         
     }
@@ -122,40 +187,38 @@ public class SinglyLinkedList implements ILinkedList{
      * Add the gen item to  the linked list at the given position
      * @param item Item to add
      * @param index The position to add the item
-     * @return true if successfuuly added, false otherwise
+     * @return true if successfully added, false otherwise
      */
     @Override
-    public boolean add(int number, String firstName, String lastName, int priority, int index) {
-        if(index<0 || index>size) {
+    public boolean add(Patients item, int index) {
+        if (item == null || index < 0 || index > size){
             return false;
         }
         
-        Patients newPatient = new Patients(number,firstName,lastName,priority);
-        Node newNode = new Node(newPatient);
+        Node newNode = new Node (item);
         
-        //adding @ beginning
-        if(index==0){
+        if (head == null){
+            head = newNode;
+            tail = newNode;
+        }
+        else if (index == 0){
             newNode.setNext(head);
             head = newNode;
-            if(tail==null){//empty list
-                tail=newNode;
-            }
-        //adding @ end
-        }else if(index==size){
+        }
+        else if (index == size){
             tail.setNext(newNode);
             tail = newNode;
-        }else{
+        }
+        else{
             Node current = head;
-            for(int i=0;i<index-1;i++){
+            for (int i = 0; i < index - 1; i++){
                 current = current.getNext();
             }
             newNode.setNext(current.getNext());
             current.setNext(newNode);
-            
+                   
         }
-        
         size++;
-        
         return true;
     }
     
