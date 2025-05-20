@@ -19,12 +19,6 @@ public class SinglyLinkedList implements ILinkedList{
      */
     @Override
     public int size() {
-        this.size = 0;
-        Node current = head;
-        while(current != null){
-            this.size++;
-            current = current.getNext();
-        }
         return this.size;
     }
 
@@ -222,5 +216,13 @@ public class SinglyLinkedList implements ILinkedList{
         return true;
     }
     
+    @Override
+    public String toString(){
+        String str = "";
+        for(int i=0;i<size();i++){
+            str+=get(i).toString() + "; ";
+        }
+        return str;
+    }
     
 }

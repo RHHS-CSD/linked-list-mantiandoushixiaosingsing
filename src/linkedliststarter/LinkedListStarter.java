@@ -47,7 +47,7 @@ public class LinkedListStarter {
         System.out.println("size of link list: "+sli1.size());
         
         sli1.clear();
-        System.out.println(sli1.toString());
+        System.out.println("cleared!" + sli1.toString());
         
     }
     
