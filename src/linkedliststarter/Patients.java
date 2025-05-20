@@ -32,7 +32,7 @@ public class Patients implements Comparable{
     
     @Override
     public String toString(){
-        return null;
+        return this.number + ": " + this.firstName + " " + this.lastName + ", priority " + this.priority;
     }
     
     @Override
@@ -40,15 +40,42 @@ public class Patients implements Comparable{
         //anything not of type Patients is false
         if (! (o instanceof Patients))
             return false;
-        //add code to properly compare
         
-        return true;
+        Patients other = (Patients) o;
+        return this.priority == other.priority && this.number == other.number && this.firstName.equals(other.firstName) && this.lastName.equals(other.lastName);
         
     }
 
     @Override
     public int compareTo(Object o) {
+        Patients other = (Patients) o;
         
+        if (this.priority > other.priority){
+            return -1;
+        }
+        else if (this.priority < other.priority){
+            return 1;
+        }
+        
+        int lastNameCompare = this.lastName.compareTo(other.lastName);
+        if (lastNameCompare != 0){
+            return lastNameCompare > 0 ? 1 : -1;
+        }
+
+        
+        int firstNameCompare = this.firstName.compareTo(other.firstName);
+        if (firstNameCompare != 0){
+            return firstNameCompare > 0 ? 1 : -1;
+        }
+
+        
+        if (this.number > other.number){
+            return 1;
+        }
+        else if (this.number < other.number){
+            return -1;
+        }
+
         return 0;
     }
 }
