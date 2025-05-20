@@ -9,7 +9,7 @@ package linkedliststarter;
  * @author michael.roy-diclemen
  */
 public interface ILinkedList {
-    public String toString();
+public String toString();
 public int size();
 public void clear();
 public boolean remove(Patients item);
